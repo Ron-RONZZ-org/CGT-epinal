@@ -1,6 +1,8 @@
 // Events Management - Sample data and functions
 
 // Sample events data
+// NOTE: These are placeholder dates for demonstration purposes.
+// Replace with actual event data from a backend or CMS in production.
 const sampleEvents = [
     {
         id: 1,
@@ -50,8 +52,14 @@ function loadUpcomingEvents() {
     if (!eventsContainer) return;
 
     const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize to start of day for accurate comparison
+    
     const upcomingEvents = sampleEvents
-        .filter(event => new Date(event.date) >= today)
+        .filter(event => {
+            const eventDate = new Date(event.date);
+            eventDate.setHours(0, 0, 0, 0);
+            return eventDate >= today;
+        })
         .sort((a, b) => new Date(a.date) - new Date(b.date))
         .slice(0, 3);
 

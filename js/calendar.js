@@ -1,4 +1,6 @@
 // Calendar Page - Events display and filtering
+// NOTE: This file depends on sampleEvents array from events.js
+// Ensure events.js is loaded before calendar.js in the HTML
 
 // Load all events on calendar page
 function loadCalendarEvents() {
