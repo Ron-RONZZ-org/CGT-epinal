@@ -1,0 +1,43 @@
+# New website for CGT Union Locale Épinal
+
+- site configuration
+  - langue : français
+  - theme color : #f03e3e #fab005 #dcdad7
+  - navigation bar
+    - [logo](https://www.cgt.fr/themes/bluedrop/svg/logo.svg)
+    - Home : `index`
+    - La CGT ? : `intro`
+    - Agenda : `calendar`
+    - search bar
+    - social media icons : Instagram-Facebook
+    - **Se syndiquer** : `contact`
+  - footer
+    - sitemap
+    - ©CGT Union Locale Épinal {year}
+- index
+  - Vidéo welcome : [Se syndiquer, c'est pour n'est pas être seul](https://cdn.ronzz.org/CGT/pour-ne-pas-etre-seul.mp4)
+  - button to `contact` : Se syndiquer
+  - Actualités
+    - Integrated instagram feed
+  - prochains événements
+    - list
+      - date - Title - time : link to event page
+- contact
+  - contact details
+    - Michel Tomasini
+    - ulcgtepinal@gmail.com
+    - 06 41 27 48 65
+    - 4 RUE ARISTIDE BRIAND BP
+  - `inscription en ligne` button : https://www.cgt.fr/syndicalisation/syndiquez-vous#forward
+- intro
+  - presentation of union local epinal
+- calendar
+  - prochains événements
+    - color scheme
+      - blue : permanence - juridique, général, aide sociale, etc.
+      - purple : convialité
+      - red : action syndicale - grèves, etc.
+      - green : administrative - meetings
+- search 
+  - siteweb text search
+  
