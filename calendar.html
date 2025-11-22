@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - CGT Union Locale Épinal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="https://www.cgt.fr/themes/bluedrop/svg/logo.svg" alt="Logo CGT">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="intro.html" class="nav-link">La CGT ?</a></li>
+                <li class="nav-item"><a href="calendar.html" class="nav-link active">Agenda</a></li>
+                <li class="nav-item nav-search">
+                    <input type="text" id="search-input" placeholder="Rechercher..." class="search-bar">
+                    <button id="search-btn" class="search-button"><i class="fas fa-search"></i></button>
+                </li>
+                <li class="nav-item nav-social">
+                    <a href="https://www.instagram.com/cgtepinal/" target="_blank" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/cgtepinal/" target="_blank" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </li>
+                <li class="nav-item nav-cta">
+                    <a href="contact.html" class="btn-syndicate">Se syndiquer</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="calendar-section">
+            <div class="container">
+                <h1>Agenda</h1>
+                
+                <div class="calendar-legend">
+                    <h2>Légende</h2>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <span class="legend-color blue"></span>
+                            <span class="legend-text">Permanence (juridique, général, aide sociale, etc.)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color purple"></span>
+                            <span class="legend-text">Convialité</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color red"></span>
+                            <span class="legend-text">Action syndicale (grèves, etc.)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color green"></span>
+                            <span class="legend-text">Administrative (meetings)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calendar-filters">
+                    <button class="filter-btn active" data-filter="all">Tous</button>
+                    <button class="filter-btn" data-filter="blue">Permanence</button>
+                    <button class="filter-btn" data-filter="purple">Convialité</button>
+                    <button class="filter-btn" data-filter="red">Action syndicale</button>
+                    <button class="filter-btn" data-filter="green">Administrative</button>
+                </div>
+
+                <div id="events-container" class="events-container">
+                    <!-- Events will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-sitemap">
+                    <h3>Plan du site</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="intro.html">La CGT ?</a></li>
+                        <li><a href="calendar.html">Agenda</a></li>
+                        <li><a href="contact.html">Se syndiquer</a></li>
+                        <li><a href="search.html">Rechercher</a></li>
+                    </ul>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; CGT Union Locale Épinal <span id="current-year"></span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/calendar.js"></script>
+</body>
+</html>

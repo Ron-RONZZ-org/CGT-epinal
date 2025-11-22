@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGT Union Locale Épinal - Accueil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="https://www.cgt.fr/themes/bluedrop/svg/logo.svg" alt="Logo CGT">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="intro.html" class="nav-link">La CGT ?</a></li>
+                <li class="nav-item"><a href="calendar.html" class="nav-link">Agenda</a></li>
+                <li class="nav-item nav-search">
+                    <input type="text" id="search-input" placeholder="Rechercher..." class="search-bar">
+                    <button id="search-btn" class="search-button"><i class="fas fa-search"></i></button>
+                </li>
+                <li class="nav-item nav-social">
+                    <a href="https://www.instagram.com/cgtepinal/" target="_blank" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/cgtepinal/" target="_blank" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </li>
+                <li class="nav-item nav-cta">
+                    <a href="contact.html" class="btn-syndicate">Se syndiquer</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Welcome Video Section -->
+        <section class="hero-section">
+            <div class="video-container">
+                <video controls autoplay muted poster="img/video-poster.jpg">
+                    <source src="https://cdn.ronzz.org/CGT/pour-ne-pas-etre-seul.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo HTML5.
+                </video>
+                <div class="hero-content">
+                    <h1>Se syndiquer, c'est pour ne pas être seul</h1>
+                    <a href="contact.html" class="btn-primary">Se syndiquer</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="news-section">
+            <div class="container">
+                <h2>Actualités</h2>
+                <div id="instagram-feed" class="instagram-feed">
+                    <!-- Instagram feed will be loaded here -->
+                    <div class="instagram-placeholder">
+                        <p>Suivez-nous sur Instagram pour les dernières actualités</p>
+                        <a href="https://www.instagram.com/cgtepinal/" target="_blank" class="btn-secondary">
+                            <i class="fab fa-instagram"></i> Voir sur Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Events Section -->
+        <section class="events-section">
+            <div class="container">
+                <h2>Prochains événements</h2>
+                <div id="upcoming-events" class="events-list">
+                    <!-- Events will be loaded dynamically -->
+                    <p class="loading-message">Chargement des événements...</p>
+                </div>
+                <a href="calendar.html" class="btn-secondary">Voir tous les événements</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-sitemap">
+                    <h3>Plan du site</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="intro.html">La CGT ?</a></li>
+                        <li><a href="calendar.html">Agenda</a></li>
+                        <li><a href="contact.html">Se syndiquer</a></li>
+                        <li><a href="search.html">Rechercher</a></li>
+                    </ul>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; CGT Union Locale Épinal <span id="current-year"></span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/events.js"></script>
+</body>
+</html>
