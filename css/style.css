@@ -12,6 +12,8 @@
     --event-purple: #9b59b6;
     --event-red: #f03e3e;
     --event-green: #27ae60;
+    /* default header height — can be overridden on .navbar */
+    --navbar-height: 90px;
 }
 
 /* Reset and Base Styles */
@@ -43,6 +45,44 @@ ul {
     padding: 0 20px;
 }
 
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-red);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background-color: #d92a2a;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-yellow);
+    color: var(--text-dark);
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #e09f04;
+}
+
+.btn-large {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+}
+
 /* Navigation Bar */
 .navbar {
     background-color: var(--white);
@@ -50,6 +90,9 @@ ul {
     position: sticky;
     top: 0;
     z-index: 1000;
+    /* expose a CSS variable so hero can size against the header */
+    --navbar-height: 90px;
+    height: var(--navbar-height);
 }
 
 .nav-container {
@@ -64,6 +107,16 @@ ul {
 .nav-logo img {
     height: 50px;
     width: auto;
+}
+
+.nav-site-title {
+    display: inline-block;
+    color: var(--primary-red);
+    font-weight: 700;
+    margin-left: 12px;
+    vertical-align: text-top;
+    line-height: 1;
+    font-size: 1rem;
 }
 
 .nav-menu {
@@ -157,63 +210,38 @@ ul {
     transition: 0.3s;
 }
 
-/* Buttons */
-.btn-primary {
-    background-color: var(--primary-red);
-    color: var(--white);
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    font-weight: bold;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-}
 
-.btn-primary:hover {
-    background-color: #d92a2a;
-}
 
-.btn-secondary {
-    background-color: var(--secondary-yellow);
-    color: var(--text-dark);
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    font-weight: bold;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-.btn-secondary:hover {
-    background-color: #e09f04;
-}
-
-.btn-large {
-    padding: 1.2rem 2.5rem;
-    font-size: 1.1rem;
-}
-
-/* Hero Section */
+/* Hero Section: fill remaining viewport height after header */
 .hero-section {
     position: relative;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
+    /* use a fallback in case --navbar-height isn't inherited or set on the header */
+    height: calc(100vh - var(--navbar-height, 90px));
     overflow: hidden;
 }
 
+/* Make the video container fill the hero area and position content above it */
 .video-container {
-    position: relative;
+    position: absolute;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
     width: 100%;
-    height: 600px;
+    height: 100%;
     overflow: hidden;
 }
 
 .video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 100%;
     height: 100%;
+    transform: translate(-50%, -50%);
     object-fit: cover;
     filter: brightness(0.6);
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .video-overlay {
@@ -224,6 +252,7 @@ ul {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
     pointer-events: none;
+    z-index: 5;
 }
 
 .hero-content {
@@ -400,6 +429,18 @@ ul {
 .intro-sidebar .info-box h3 {
     color: var(--primary-red);
     margin-bottom: 1rem;
+}
+
+/* make entire info-box clickable when used as a link */
+.info-box-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.info-box-link:focus {
+    outline: 3px solid rgba(240,62,62,0.25);
+    outline-offset: 2px;
 }
 
 .social-links {
@@ -738,7 +779,7 @@ ul {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 90px;
         flex-direction: column;
         background-color: var(--white);
         width: 100%;

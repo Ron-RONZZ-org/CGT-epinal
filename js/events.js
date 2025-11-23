@@ -23,15 +23,34 @@ async function loadUpcomingEvents() {
     const eventsContainer = document.getElementById('upcoming-events');
     if (!eventsContainer) return;
 
+    // show loading state
+    eventsContainer.innerHTML = '<p class="loading-message">Chargement des événements...</p>';
+
     // Fetch events from events.json
-    await fetchEvents();
+    try {
+        await fetchEvents();
+    } catch (err) {
+        console.error('Failed to load events:', err);
+        eventsContainer.innerHTML = '<p class="loading-message">Impossible de charger les événements pour le moment.</p>';
+        return;
+    }
 
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Normalize to start of day for accurate comparison
     
+    // parse dates as local dates (avoid timezone shift with YYYY-MM-DD)
+    function parseISODate(dateStr) {
+        // dateStr expected as 'YYYY-MM-DD' or ISO-like
+        const parts = dateStr.split('-').map(Number);
+        if (parts.length >= 3) {
+            return new Date(parts[0], parts[1] - 1, parts[2]);
+        }
+        return new Date(dateStr);
+    }
+
     const upcomingEvents = sampleEvents
         .filter(event => {
-            const eventDate = new Date(event.date);
+            const eventDate = parseISODate(event.date);
             eventDate.setHours(0, 0, 0, 0);
             return eventDate >= today;
         })
@@ -59,7 +78,9 @@ function formatEventDate(dateString) {
     return date.toLocaleDateString('fr-FR', options);
 }
 
-// Initialize events on page load
-if (document.getElementById('upcoming-events')) {
-    document.addEventListener('DOMContentLoaded', loadUpcomingEvents);
-}
+// Initialize events on page load — always attach listener
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('upcoming-events')) {
+        loadUpcomingEvents();
+    }
+});
