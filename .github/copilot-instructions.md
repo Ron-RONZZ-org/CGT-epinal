@@ -14,7 +14,7 @@ This is the official website for **CGT Union Locale Épinal** (Confédération G
 - **CSS3** - Custom styling with CSS variables
 - **Vanilla JavaScript** - No frameworks, pure JavaScript for interactivity
 - **Font Awesome 6.4.0** - Icon library (CDN)
-- **No build process** - Static files served directly
+- **No build process** - Static files served directly (no compilation or bundling needed)
 
 ## Language Requirements
 
@@ -57,7 +57,7 @@ Events are categorized with specific colors:
 
 ### Visual Identity
 - **Logo:** Use official CGT logo from `https://www.cgt.fr/themes/bluedrop/svg/logo.svg`
-- **Favicon:** Use CGT logo from Wikipedia
+- **Favicon:** Use CGT logo from `https://upload.wikimedia.org/wikipedia/fr/thumb/7/74/Logo-cgt.svg/942px-Logo-cgt.svg.png`
 - **Typography:** 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 - **Responsive Design:** Mobile-first approach with hamburger menu on small screens
 
