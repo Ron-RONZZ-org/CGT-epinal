@@ -3,9 +3,6 @@
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     loadHeaderAndFooter();
-    initNavigation();
-    updateCopyrightYear();
-    initSearchBar();
 });
 
 // Load header and footer dynamically
@@ -18,9 +15,6 @@ async function loadHeaderAndFooter() {
             if (headerResponse.ok) {
                 const headerHTML = await headerResponse.text();
                 headerPlaceholder.innerHTML = headerHTML;
-                // Re-initialize navigation after header is loaded
-                initNavigation();
-                initSearchBar();
             }
         }
 
@@ -31,12 +25,16 @@ async function loadHeaderAndFooter() {
             if (footerResponse.ok) {
                 const footerHTML = await footerResponse.text();
                 footerPlaceholder.innerHTML = footerHTML;
-                updateCopyrightYear();
             }
         }
 
         // Update active nav link based on current page
         updateActiveNavLink();
+        
+        // Re-initialize after header/footer are loaded
+        initNavigation();
+        initSearchBar();
+        updateCopyrightYear();
     } catch (error) {
         console.error('Error loading header/footer:', error);
     }

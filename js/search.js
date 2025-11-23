@@ -15,7 +15,8 @@ const siteContent = [
     {
         title: 'Agenda',
         url: 'calendar.html',
-        content: 'événements agenda permanence juridique aide sociale action syndicale grève convialité assemblée réunion'
+        content: 'événements agenda permanence juridique aide sociale action syndicale grève convialité assemblée réunion',
+        baseContent: 'événements agenda permanence juridique aide sociale action syndicale grève convialité assemblée réunion'
     },
     {
         title: 'Contact - Se syndiquer',
@@ -38,7 +39,8 @@ async function updateAgendaContent() {
         if (agendaIndex !== -1) {
             const eventTitles = events.map(event => event.title).join(' ');
             const eventDescriptions = events.map(event => event.description).join(' ');
-            siteContent[agendaIndex].content += ' ' + eventTitles + ' ' + eventDescriptions;
+            // Reset to base content before appending to avoid accumulation
+            siteContent[agendaIndex].content = siteContent[agendaIndex].baseContent + ' ' + eventTitles + ' ' + eventDescriptions;
         }
     } catch (error) {
         console.error('Error fetching events for search:', error);
