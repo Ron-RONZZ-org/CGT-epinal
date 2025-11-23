@@ -3,7 +3,23 @@
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     loadHeaderAndFooter();
+    handleVideoAutoplay();
 });
+
+// Handle video autoplay with respect to user preferences
+function handleVideoAutoplay() {
+    const video = document.querySelector('.hero-section video');
+    if (video) {
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (prefersReducedMotion) {
+            // Disable autoplay for users who prefer reduced motion
+            video.removeAttribute('autoplay');
+            video.pause();
+        }
+    }
+}
 
 // Load header and footer dynamically
 async function loadHeaderAndFooter() {
@@ -15,6 +31,8 @@ async function loadHeaderAndFooter() {
             if (headerResponse.ok) {
                 const headerHTML = await headerResponse.text();
                 headerPlaceholder.innerHTML = headerHTML;
+            } else {
+                console.error('Failed to load header.html:', headerResponse.status);
             }
         }
 
@@ -25,6 +43,8 @@ async function loadHeaderAndFooter() {
             if (footerResponse.ok) {
                 const footerHTML = await footerResponse.text();
                 footerPlaceholder.innerHTML = footerHTML;
+            } else {
+                console.error('Failed to load footer.html:', footerResponse.status);
             }
         }
 
