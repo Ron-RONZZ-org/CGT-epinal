@@ -52,9 +52,9 @@ async function loadHeaderAndFooter() {
         updateActiveNavLink();
         
         // Re-initialize after header/footer are loaded
-        initNavigation();
-        initSearchBar();
-        updateCopyrightYear();
+        if (typeof initNavigation === 'function') initNavigation();
+        if (typeof initSearchBar === 'function') initSearchBar();
+        if (typeof updateCopyrightYear === 'function') updateCopyrightYear();
     } catch (error) {
         console.error('Error loading header/footer:', error);
     }

@@ -40,7 +40,7 @@ async function updateAgendaContent() {
             const eventTitles = events.map(event => event.title).join(' ');
             const eventDescriptions = events.map(event => event.description).join(' ');
             // Reset to base content before appending to avoid accumulation
-            siteContent[agendaIndex].content = `${siteContent[agendaIndex].baseContent} ${eventTitles} ${eventDescriptions}`;
+            siteContent[agendaIndex].content = [siteContent[agendaIndex].baseContent, eventTitles, eventDescriptions].join(' ');
         }
     } catch (error) {
         console.error('Error fetching events for search:', error);
