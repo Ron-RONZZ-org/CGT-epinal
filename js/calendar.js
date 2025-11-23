@@ -3,9 +3,12 @@
 // Ensure events.js is loaded before calendar.js in the HTML
 
 // Load all events on calendar page
-function loadCalendarEvents() {
+async function loadCalendarEvents() {
     const eventsContainer = document.getElementById('events-container');
     if (!eventsContainer) return;
+
+    // Ensure events are fetched
+    await fetchEvents();
 
     displayEvents(sampleEvents);
     initializeFilters();

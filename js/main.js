@@ -2,10 +2,64 @@
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
+    loadHeaderAndFooter();
     initNavigation();
     updateCopyrightYear();
     initSearchBar();
 });
+
+// Load header and footer dynamically
+async function loadHeaderAndFooter() {
+    try {
+        // Load header
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        if (headerPlaceholder) {
+            const headerResponse = await fetch('header.html');
+            if (headerResponse.ok) {
+                const headerHTML = await headerResponse.text();
+                headerPlaceholder.innerHTML = headerHTML;
+                // Re-initialize navigation after header is loaded
+                initNavigation();
+                initSearchBar();
+            }
+        }
+
+        // Load footer
+        const footerPlaceholder = document.getElementById('footer-placeholder');
+        if (footerPlaceholder) {
+            const footerResponse = await fetch('footer.html');
+            if (footerResponse.ok) {
+                const footerHTML = await footerResponse.text();
+                footerPlaceholder.innerHTML = footerHTML;
+                updateCopyrightYear();
+            }
+        }
+
+        // Update active nav link based on current page
+        updateActiveNavLink();
+    } catch (error) {
+        console.error('Error loading header/footer:', error);
+    }
+}
+
+// Update active navigation link based on current page
+function updateActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    const ctaLink = document.querySelector('.btn-syndicate');
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Special handling for contact page CTA button
+    if (ctaLink && currentPage === 'contact.html') {
+        ctaLink.classList.add('active');
+    }
+}
 
 // Navigation functionality
 function initNavigation() {

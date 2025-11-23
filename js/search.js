@@ -24,8 +24,32 @@ const siteContent = [
     }
 ];
 
+// Fetch and update agenda content from events.json
+async function updateAgendaContent() {
+    try {
+        const response = await fetch('events.json');
+        if (!response.ok) {
+            throw new Error('Failed to fetch events');
+        }
+        const events = await response.json();
+        
+        // Update the agenda content in siteContent array
+        const agendaIndex = siteContent.findIndex(item => item.url === 'calendar.html');
+        if (agendaIndex !== -1) {
+            const eventTitles = events.map(event => event.title).join(' ');
+            const eventDescriptions = events.map(event => event.description).join(' ');
+            siteContent[agendaIndex].content += ' ' + eventTitles + ' ' + eventDescriptions;
+        }
+    } catch (error) {
+        console.error('Error fetching events for search:', error);
+    }
+}
+
 // Initialize search page
-function initializeSearch() {
+async function initializeSearch() {
+    // Update agenda content with latest events
+    await updateAgendaContent();
+    
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('q');
     

@@ -1,55 +1,30 @@
-// Events Management - Sample data and functions
+// Events Management - Fetch data from events.json
 
-// Sample events data
-// NOTE: These are placeholder dates for demonstration purposes.
-// Replace with actual event data from a backend or CMS in production.
-const sampleEvents = [
-    {
-        id: 1,
-        date: '2024-01-15',
-        title: 'Permanence juridique',
-        time: '14:00',
-        type: 'blue',
-        description: 'Conseil juridique pour les adhérents'
-    },
-    {
-        id: 2,
-        date: '2024-01-20',
-        title: 'Assemblée Générale',
-        time: '18:00',
-        type: 'green',
-        description: 'Assemblée générale mensuelle'
-    },
-    {
-        id: 3,
-        date: '2024-01-25',
-        title: 'Manifestation pour les salaires',
-        time: '10:00',
-        type: 'red',
-        description: 'Action revendicative'
-    },
-    {
-        id: 4,
-        date: '2024-02-01',
-        title: 'Pot de bienvenue',
-        time: '19:00',
-        type: 'purple',
-        description: 'Moment convivial entre adhérents'
-    },
-    {
-        id: 5,
-        date: '2024-02-10',
-        title: 'Permanence aide sociale',
-        time: '10:00',
-        type: 'blue',
-        description: 'Aide et conseil social'
+// Global variable to store events
+let sampleEvents = [];
+
+// Fetch events from events.json
+async function fetchEvents() {
+    try {
+        const response = await fetch('events.json');
+        if (!response.ok) {
+            throw new Error('Failed to fetch events');
+        }
+        sampleEvents = await response.json();
+        return sampleEvents;
+    } catch (error) {
+        console.error('Error fetching events:', error);
+        return [];
     }
-];
+}
 
 // Load upcoming events on homepage
-function loadUpcomingEvents() {
+async function loadUpcomingEvents() {
     const eventsContainer = document.getElementById('upcoming-events');
     if (!eventsContainer) return;
+
+    // Fetch events from events.json
+    await fetchEvents();
 
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Normalize to start of day for accurate comparison
