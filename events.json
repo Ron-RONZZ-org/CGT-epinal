@@ -1,0 +1,42 @@
+    [
+        {
+            "id": 1,
+            "date": "2024-01-15",
+            "title": "Permanence juridique",
+            "time": "14:00",
+            "type": "blue",
+            "description": "Conseil juridique pour les adhérents"
+        },
+        {
+            "id": 2,
+            "date": "2024-01-20",
+            "title": "Assemblée Générale",
+            "time": "18:00",
+            "type": "green",
+            "description": "Assemblée générale mensuelle"
+        },
+        {
+            "id": 3,
+            "date": "2024-01-25",
+            "title": "Manifestation pour les salaires",
+            "time": "10:00",
+            "type": "red",
+            "description": "Action revendicative"
+        },
+        {
+            "id": 4,
+            "date": "2024-02-01",
+            "title": "Pot de bienvenue",
+            "time": "19:00",
+            "type": "purple",
+            "description": "Moment convivial entre adhérents"
+        },
+        {
+            "id": 5,
+            "date": "2024-02-10",
+            "title": "Permanence aide sociale",
+            "time": "10:00",
+            "type": "blue",
+            "description": "Aide et conseil social"
+        }
+    ]
