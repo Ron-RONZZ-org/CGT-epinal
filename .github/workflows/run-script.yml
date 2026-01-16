@@ -1,9 +1,11 @@
-name: Run script on push
+name: Run script on push to ./events/
 
 on:
   push:
     branches:
       - main
+    paths:
+      - "events/**"
 
 jobs:
   run-script:
