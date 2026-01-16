@@ -1,0 +1,60 @@
+$TTL 3600
+
+; --- GitHub Pages A records (apex domain) ---
+@       IN  A       185.199.108.153
+@       IN  A       185.199.109.153
+@       IN  A       185.199.110.153
+@       IN  A       185.199.111.153
+
+; --- Subdomain www pointing to GitHub Pages ---
+www     IN  CNAME   Ron-RONZZ-org.github.io.
+
+; --- SOA & NS (OVH defaults) ---
+@       IN  SOA     dns110.ovh.net. tech.ovh.net. (
+                        2026011403   ; Serial
+                        86400        ; Refresh
+                        3600         ; Retry
+                        3600000      ; Expire
+                        60 )         ; Minimum TTL
+
+        IN  NS      ns110.ovh.net.
+        IN  NS      dns110.ovh.net.
+
+; ============================================================
+;                       MIGADU MAIL
+; ============================================================
+
+; --- Domain verification ---
+cgt-epinal.fr.          3000 IN TXT "hosted-email-verify=t3noxpal"
+
+; --- MX records (Migadu) ---
+cgt-epinal.fr.          3000 IN MX 10 aspmx1.migadu.com.
+cgt-epinal.fr.          3000 IN MX 20 aspmx2.migadu.com.
+
+; --- SPF ---
+cgt-epinal.fr.          3000 IN TXT "v=spf1 include:spf.migadu.com -all"
+
+; --- DKIM ---
+key1._domainkey.cgt-epinal.fr. 3000 IN CNAME key1.cgt-epinal.fr._domainkey.migadu.com.
+key2._domainkey.cgt-epinal.fr. 3000 IN CNAME key2.cgt-epinal.fr._domainkey.migadu.com.
+key3._domainkey.cgt-epinal.fr. 3000 IN CNAME key3.cgt-epinal.fr._domainkey.migadu.com.
+
+; --- DMARC ---
+_dmarc.cgt-epinal.fr.   3000 IN TXT "v=DMARC1; p=quarantine;"
+
+; --- Autoconfig / Autodiscover ---
+autoconfig.cgt-epinal.fr.        3000 IN CNAME autoconfig.migadu.com.
+_autodiscover._tcp.cgt-epinal.fr. 3000 IN SRV 0 1 443 autodiscover.migadu.com.
+
+; --- Submission / IMAP / POP3 ---
+_submissions._tcp.cgt-epinal.fr. 3000 IN SRV 0 1 465 smtp.migadu.com.
+_imaps._tcp.cgt-epinal.fr.       3000 IN SRV 0 1 993 imap.migadu.com.
+_pop3s._tcp.cgt-epinal.fr.       3000 IN SRV 0 1 995 pop.migadu.com.
+
+; ============================================================
+;                   OPTIONAL LEGACY ENTRIES
+; ============================================================
+
+ftp     IN  CNAME   cgt-epinal.fr.
+www     IN  TXT     "3|welcome"
+
