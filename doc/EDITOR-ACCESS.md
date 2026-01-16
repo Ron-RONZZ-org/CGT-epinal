@@ -6,8 +6,6 @@
 
 Le domaine principal de notre site web est [ul.cgt-epinal.fr](https://ul.cgt-epinal.fr/)
 
-[cgt-epinal.fr](https://cgt-epinal.fr/) et [www.cgt-epinal.fr](https://www.cgt-epinal.fr/) sont des alias qui redirigent vers le domaine principal.
-
 ### Hébergement
 
 Notre site web est [hébergé sur Github](https://github.com/Ron-RONZZ-org/CGT-epinal) comme site web statique via `Github Pages`. Cette solution, utilisée par des millions de professionnels de l'informatique autour du monde, nous permet de rendre notre site web rapide, sécurisé et accessible gratuitement.
@@ -78,7 +76,7 @@ Ajouter un événement est l'édition la plus fréquemment effectuée. La procé
 
 D'abord, ouvrez le projet web dans [l'espace d'édition](https://vscode.dev/github/Ron-RONZZ-org/CGT-epinal?vscode-lang=fr-fr).
 
-<video controls src="graphics/event-tuto.webm" title="Tutoriel ajout d'événement"></video>
+Pour une démonstration vidéo, [cliquez ici](https://raw.githubusercontent.com/Ron-RONZZ-org/CGT-epinal/refs/heads/main/doc/graphics/event-tuto.webm)) 
 
 Cliquez n'importe où dans l'éditeur du fichier et appuyez sur `Ctrl+Maj+E` pour ouvrir l'onglet `Explorateur`.
 
@@ -100,7 +98,7 @@ Pour savoir comment enregistrer et déployer vos éditions, lisez la section sui
 
 ### Enregistrer et déployer vos éditions
 
-<video controls src="graphics/push.webm" title="Tutoriel déploiement"></video>
+Pour une démonstration vidéo, [cliquez ici]((https://raw.githubusercontent.com/Ron-RONZZ-org/CGT-epinal/refs/heads/main/doc/graphics/push.webm)) 
 
 Cliquez n'importe où dans l'éditeur du fichier et appuyez sur `Ctrl+Maj+G` pour ouvrir l'onglet `Contrôle de code source`.
 
@@ -109,8 +107,6 @@ Tapez un bref message pour expliquer les changements effectués. Un message lisi
 Puis appuyez sur `Ctrl+Entrée` pour enregistrer les changements.
 
 Attendez quelques minutes avant de vérifier que les changements sont bien effectués sur [ul.cgt-epinal.fr](https://ul.cgt-epinal.fr).
-
-
 
 
 
