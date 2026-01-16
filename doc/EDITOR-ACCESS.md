@@ -30,7 +30,7 @@ Dès que vous vous êtes connecté sur github, copier votre nom d'utilisateur :
 
 ![nom d'utilisateur](CGT-epinal/doc/graphics/uzantnomo.gif)
 
-Et envoyer une demande d'accès depuis **votre mail habituel** à tech@cgt-epinal.fr avec votre nom d'utilisateur indiqué.
+Et envoyer une demande d'accès depuis **votre mail habituel** à `tech@cgt-epinal.fr` avec votre nom d'utilisateur indiqué.
 
 Vous allez reçevoir un mail d'invitation de la part de Github dès votre demande est traité, avec le titre `Ron-RONZZ-org invited you to Ron-RONZZ-org/CGT-epinal`.
 
@@ -76,13 +76,39 @@ Utiliser [vos crédentiels Github](#se-connecter-sur-github) pour vous connecter
 
 Ajouter un événement est l'édition la plus fréquentemment effectué. La procédure est simple :
 
-D'aboard, naviguez-vous vers le dossier `./events` :
+D'aboard, ouvrir le projet web dans [l'espace d'édition](https://vscode.dev/github/Ron-RONZZ-org/CGT-epinal?vscode-lang=fr-fr)
+
+<video controls src="graphics/event-tuto.webm" title="Title"></video>
+
+Cliquez n'importe ou dans l'éditeur du fichier et pressez `Ctrl+Maj+E` pour ouvrir l'onglet d`'Explorateur`.
+
+Naviguez-vous vers le dossier `./events` par y cliquer au-dessus :
 
 ![kodspaca](/home/rongzhou/Documents/CGT-epinal/doc/graphics/kodspaca.png)
 
 Le fichier [`event-example.md`](https://github.com/Ron-RONZZ-org/CGT-epinal/blob/main/events/event-example.md) contient un exemple générique d'un événement.
 
-Pour 
+Le fichier [`event-template.md`](https://github.com/Ron-RONZZ-org/CGT-epinal/blob/main/events/event-example.md) contient un modèle vide d'un événement.
+
+Pour créer un exemple, créer un nouveau fichier d'événements par cliquer au-dessus le bouton `+ fichier` et créer un nouveau fichier d'événement. Veuillez le donner un nom lisible comme `event-23-09-1895-juridique.md`. Notez le nom de ficher doit terminer avec l'extension `.md`, qui siginifie fichier text markdown. Puis ouvrir `event-template.md` par y cliquer au-dessus et selectionner tous les contenu par `CTRL+A` puis presser `CTRL+C` pour tout copier, puis revenir dans le ficher et presse `CTRL+V` pour coller tous.
+
+Puis rempliez l'événement avec les contenu désiré. Veuillez noter qu'il ne faut **absolutement** pas changer les lignes qui commence avec `#` pour que l'événement sera affiché comme attendu. Aussi, pour la section `## Type`, il faut simplement cocher l'option besoin avec un `X` (lettere `x` en majuscule). Il ne sert à rien d'ajouter une nouvelle catégorie car elle ne sera pas prise en charge ! Si vous ne trouvez pas la catégorie d'événement besoin, contact `tech@cgt-epinal.fr`.
+
+Pour savoir comment enregister et deployer vos éditions, c'est par ici.
+
+### Enregister et deployer vos éditions
+
+<video controls src="graphics/push.webm" title="Title"></video>
+
+Cliquez n'importe ou dans l'éditeur du fichier et pressez `Ctrl+Maj+G` pour ouvrir l'onglet de `Contrôle de code source`.
+
+Tapez un bref message pour expliquer les changements effectuer. Un message lisible rassure qu'on peut facilement revenir à une version précédente au cas d'erreur.
+
+Puis pressez `CTRL+ENTRÉE` pour enregistrer les changements.
+
+Attendez quelques minutes avant de vérifier que les changements sont bien effectuer sur [ul.cgt-epinal.fr](https://ul.cgt-epinal.fr).
+
+
 
 
 
