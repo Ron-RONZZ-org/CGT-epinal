@@ -1,0 +1,8 @@
+# robots.txt
+
+# Allow all user agents
+User-agent: *
+Disallow:
+
+# XML Sitemap
+Sitemap: /sitemap.xml

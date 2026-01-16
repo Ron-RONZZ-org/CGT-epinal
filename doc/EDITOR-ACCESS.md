@@ -76,7 +76,13 @@ Utiliser [vos crédentiels Github](#se-connecter-sur-github) pour vous connecter
 
 Ajouter un événement est l'édition la plus fréquentemment effectué. La procédure est simple :
 
-D'aboard, naviguez-vous vers le dossier `events` :
+D'aboard, naviguez-vous vers le dossier `./events` :
+
+![kodspaca](/home/rongzhou/Documents/CGT-epinal/doc/graphics/kodspaca.png)
+
+Le fichier [`event-example.md`](https://github.com/Ron-RONZZ-org/CGT-epinal/blob/main/events/event-example.md) contient un exemple générique d'un événement.
+
+Pour 
 
 
 
