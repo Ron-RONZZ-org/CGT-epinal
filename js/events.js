@@ -93,6 +93,36 @@ function parseEventMarkdown(filename, content) {
     return event;
 }
 
+// Validate event data
+function isValidEvent(event) {
+    // Check required fields
+    if (!event.title || event.title.trim() === '') {
+        console.warn('Event missing title:', event);
+        return false;
+    }
+    
+    if (!event.date) {
+        console.warn('Event missing date:', event);
+        return false;
+    }
+    
+    // Validate date format (YYYY-MM-DD)
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(event.date)) {
+        console.warn('Event has invalid date format (expected YYYY-MM-DD):', event.date);
+        return false;
+    }
+    
+    // Validate type is one of the allowed values
+    const validTypes = ['blue', 'purple', 'red', 'green'];
+    if (!validTypes.includes(event.type)) {
+        console.warn('Event has invalid type (expected blue, purple, red, or green):', event.type);
+        return false;
+    }
+    
+    return true;
+}
+
 // Fetch and parse all event markdown files
 async function fetchEvents() {
     try {
@@ -110,7 +140,7 @@ async function fetchEvents() {
                     if (fileResponse.ok) {
                         const content = await fileResponse.text();
                         const event = parseEventMarkdown(filename, content);
-                        if (event.date) { // Only add if we have a valid date
+                        if (isValidEvent(event)) {
                             sampleEvents.push(event);
                         }
                     }
