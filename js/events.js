@@ -38,10 +38,13 @@ function parseEventMarkdown(filename, content) {
     const locationIdx = lines.findIndex(line => line === '## Location');
     const typeIdx = lines.findIndex(line => line === '## Type');
     
-    // Extract description
+    // Extract description - preserve markdown formatting
     if (descIdx !== -1 && dateIdx !== -1) {
-        const descLines = lines.slice(descIdx + 1, dateIdx).filter(line => line && !line.startsWith('#'));
-        event.description = descLines.join(' ').trim();
+        const descLines = content.split('\n')
+            .slice(content.split('\n').findIndex(line => line.trim() === '## Event description') + 1)
+            .slice(0, content.split('\n').slice(content.split('\n').findIndex(line => line.trim() === '## Event description') + 1).findIndex(line => line.trim().startsWith('##')))
+            .filter(line => line.trim() !== '');
+        event.description = descLines.join('\n').trim();
     }
     
     // Extract date (DD-MM-YYYY format) and convert to ISO (YYYY-MM-DD)
@@ -210,13 +213,51 @@ async function loadUpcomingEvents() {
         return;
     }
 
-    eventsContainer.innerHTML = upcomingEvents.map(event => `
-        <div class="event-item ${event.type}">
-            <div class="event-date">${formatEventDate(event.date)}</div>
-            <div class="event-title">${event.title}</div>
-            <div class="event-time">${event.time}</div>
-        </div>
-    `).join('');
+    eventsContainer.innerHTML = upcomingEvents.map((event, index) => {
+        const renderedDescription = typeof parseMarkdown !== 'undefined' && event.description ? 
+            parseMarkdown(event.description) : event.description;
+        
+        const socialLink = event.link && event.link.trim() !== '' ? 
+            `<p class="event-social-link"><a href="${event.link}" target="_blank" rel="noopener noreferrer">Voir sur les réseaux sociaux</a></p>` : '';
+        
+        return `
+            <div class="event-item ${event.type}">
+                <div class="event-header">
+                    <div class="event-date">${formatEventDate(event.date)}</div>
+                    <div class="event-title">${event.title}</div>
+                    <div class="event-time">${event.time}</div>
+                    ${event.description ? `<button class="event-expand-btn" data-event-id="home-${index}" aria-label="Afficher la description"><i class="fas fa-plus"></i></button>` : ''}
+                </div>
+                ${event.description ? `
+                <div class="event-description-container" id="home-${index}" style="display: none;">
+                    <div class="event-description">${renderedDescription}</div>
+                    ${socialLink}
+                </div>` : ''}
+            </div>
+        `;
+    }).join('');
+    
+    // Add event listeners for expand buttons
+    document.querySelectorAll('.event-expand-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const eventId = this.getAttribute('data-event-id');
+            const descContainer = document.getElementById(eventId);
+            const icon = this.querySelector('i');
+            
+            if (descContainer.style.display === 'none') {
+                descContainer.style.display = 'block';
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+                this.setAttribute('aria-label', 'Masquer la description');
+            } else {
+                descContainer.style.display = 'none';
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+                this.setAttribute('aria-label', 'Afficher la description');
+            }
+        });
+    });
 }
 
 // Format event date for display
