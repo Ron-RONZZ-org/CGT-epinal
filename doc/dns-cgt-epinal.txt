@@ -1,10 +1,19 @@
 $TTL 3600
 
-; --- GitHub Pages A records (apex domain) ---
+; ============================================================
+;                   MAIN DOMAIN CONFIGURATION
+; ============================================================
+; Main domain: ul.cgt-epinal.fr (configured via GitHub Pages CNAME file)
+; Aliases: cgt-epinal.fr and www.cgt-epinal.fr redirect to ul.cgt-epinal.fr
+
+; --- GitHub Pages A records (apex domain cgt-epinal.fr) ---
 @       IN  A       185.199.108.153
 @       IN  A       185.199.109.153
 @       IN  A       185.199.110.153
 @       IN  A       185.199.111.153
+
+; --- Subdomain ul pointing to GitHub Pages (main site) ---
+ul      IN  CNAME   Ron-RONZZ-org.github.io.
 
 ; --- Subdomain www pointing to GitHub Pages ---
 www     IN  CNAME   Ron-RONZZ-org.github.io.
