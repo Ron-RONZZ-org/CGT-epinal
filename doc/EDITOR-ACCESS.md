@@ -92,7 +92,51 @@ Le fichier [`event-template.md`](https://github.com/Ron-RONZZ-org/CGT-epinal/blo
 
 Pour créer un événement, créez un nouveau fichier d'événement en cliquant sur le bouton `+ Fichier`. Veuillez lui donner un nom lisible comme `event-16-01-2026-juridique.md` (format : `event-DD-MM-YYYY-description.md`). Notez que le nom de fichier doit se terminer avec l'extension `.md`, qui signifie fichier texte Markdown. Puis ouvrez `event-template.md` en cliquant dessus et sélectionnez tout le contenu avec `Ctrl+A`, puis appuyez sur `Ctrl+C` pour tout copier, puis revenez dans votre nouveau fichier et appuyez sur `Ctrl+V` pour tout coller.
 
-Puis remplissez l'événement avec le contenu désiré. Veuillez noter qu'il ne faut **absolument** pas changer les lignes qui commencent avec `#` pour que l'événement soit affiché comme attendu. Aussi, pour la section `## Type`, il faut simplement cocher l'option souhaitée avec un `X` (lettre `x` en majuscule). Il ne sert à rien d'ajouter une nouvelle catégorie car elle ne sera pas prise en charge ! Si vous ne trouvez pas la catégorie d'événement souhaitée, contactez `tech@cgt-epinal.fr`.
+Puis remplissez l'événement avec le contenu désiré. Veuillez noter qu'il ne faut **absolument** pas changer les lignes qui commencent avec `##` pour que l'événement soit affiché comme attendu. Aussi, pour la section `## Type`, il faut simplement cocher l'option souhaitée avec un `X` (lettre `x` en majuscule). Il ne sert à rien d'ajouter une nouvelle catégorie car elle ne sera pas prise en charge ! Si vous ne trouvez pas la catégorie d'événement souhaitée, contactez `tech@cgt-epinal.fr`.
+
+#### Formatage Markdown dans les descriptions
+
+Les descriptions d'événements supportent le formatage Markdown pour rendre vos textes plus lisibles :
+
+- **Texte en gras** : Entourez le texte avec `**texte**` ou `__texte__`
+  - Exemple : `**Important**` s'affichera comme **Important**
+  
+- *Texte en italique* : Entourez le texte avec `*texte*` ou `_texte_`
+  - Exemple : `*Note importante*` s'affichera comme *Note importante*
+
+- Listes non-numérotées : Commencez chaque ligne avec `- ` ou `* `
+  ```
+  - Premier élément
+  - Deuxième élément
+  - Troisième élément
+  ```
+
+- Listes numérotées : Commencez chaque ligne avec `1. `, `2. `, etc.
+  ```
+  1. Première étape
+  2. Deuxième étape
+  3. Troisième étape
+  ```
+
+- Liens : Utilisez `[texte du lien](https://url.com)`
+  - Exemple : `[Voir notre page Facebook](https://facebook.com/cgtepinal)`
+
+- Images : Utilisez `![description](https://url-image.jpg)`
+
+#### Lien vers les réseaux sociaux
+
+Si vous ajoutez un lien dans le titre de l'événement (première ligne), ce lien apparaîtra automatiquement en bas de la description avec le texte "Voir sur les réseaux sociaux".
+
+Exemple :
+```markdown
+# [Permanence juridique](https://www.instagram.com/p/exemple)
+```
+
+#### Affichage sur le site
+
+- **Page d'accueil** : Les 3 prochains événements à venir s'affichent avec un bouton `+` pour voir la description complète
+- **Page Agenda** : Tous les événements à venir sont visibles avec la possibilité de filtrer par type
+- **Événements passés** : Les événements dont la date est passée ne s'affichent plus automatiquement
 
 Pour savoir comment enregistrer et déployer vos éditions, lisez la section suivante.
 

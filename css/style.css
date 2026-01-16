@@ -327,6 +327,11 @@ ul {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-left: 5px solid var(--primary-red);
     display: flex;
+    flex-direction: column;
+}
+
+.event-header {
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -363,6 +368,116 @@ ul {
     color: #666;
     min-width: 80px;
     text-align: right;
+    margin-right: 1rem;
+}
+
+.event-expand-btn {
+    background: none;
+    border: none;
+    color: var(--primary-red);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    min-width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-expand-btn:hover {
+    background-color: var(--light-gray);
+}
+
+.event-expand-btn i {
+    transition: transform 0.3s ease;
+}
+
+.event-description-container {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--light-gray);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.event-description {
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.event-description p {
+    margin-bottom: 0.5rem;
+}
+
+.event-description ul,
+.event-description ol {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.event-description li {
+    margin-bottom: 0.25rem;
+}
+
+.event-description strong {
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.event-description em {
+    font-style: italic;
+}
+
+.event-description a {
+    color: var(--primary-red);
+    text-decoration: underline;
+}
+
+.event-description a:hover {
+    color: #d92a2a;
+}
+
+.event-description img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+}
+
+.event-social-link {
+    margin-top: 0.75rem;
+}
+
+.event-social-link a {
+    color: var(--primary-red);
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.event-social-link a:hover {
+    text-decoration: underline;
+}
+
+.event-social-link a::before {
+    content: '🔗';
+    font-size: 1rem;
 }
 
 .loading-message {

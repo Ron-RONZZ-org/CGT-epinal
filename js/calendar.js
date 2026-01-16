@@ -9,8 +9,26 @@ async function loadCalendarEvents() {
 
     // Ensure events are fetched
     await fetchEvents();
+    
+    // Filter out past events
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    function parseISODate(dateStr) {
+        const parts = dateStr.split('-').map(Number);
+        if (parts.length >= 3) {
+            return new Date(parts[0], parts[1] - 1, parts[2]);
+        }
+        return new Date(dateStr);
+    }
+    
+    const upcomingEvents = sampleEvents.filter(event => {
+        const eventDate = parseISODate(event.date);
+        eventDate.setHours(0, 0, 0, 0);
+        return eventDate >= today;
+    });
 
-    displayEvents(sampleEvents);
+    displayEvents(upcomingEvents);
     initializeFilters();
 }
 
@@ -25,16 +43,53 @@ function displayEvents(events) {
 
     const sortedEvents = events.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    eventsContainer.innerHTML = sortedEvents.map(event => `
-        <div class="event-item ${event.type}" data-type="${event.type}">
-            <div class="event-date">${formatEventDate(event.date)}</div>
-            <div class="event-title">
-                <strong>${event.title}</strong>
-                <p style="font-size: 0.9rem; color: #666; margin-top: 0.25rem;">${event.description}</p>
+    eventsContainer.innerHTML = sortedEvents.map((event, index) => {
+        const renderedDescription = typeof parseMarkdown !== 'undefined' && event.description ? 
+            parseMarkdown(event.description) : event.description;
+        
+        const socialLink = event.link && event.link.trim() !== '' ? 
+            `<p class="event-social-link"><a href="${event.link}" target="_blank" rel="noopener noreferrer">Voir sur les réseaux sociaux</a></p>` : '';
+        
+        return `
+            <div class="event-item ${event.type}" data-type="${event.type}">
+                <div class="event-header">
+                    <div class="event-date">${formatEventDate(event.date)}</div>
+                    <div class="event-title">
+                        <strong>${event.title}</strong>
+                    </div>
+                    <div class="event-time">${event.time}</div>
+                    ${event.description ? `<button class="event-expand-btn" data-event-id="cal-${index}" aria-label="Afficher la description"><i class="fas fa-plus"></i></button>` : ''}
+                </div>
+                ${event.description ? `
+                <div class="event-description-container" id="cal-${index}" style="display: none;">
+                    <div class="event-description">${renderedDescription}</div>
+                    ${socialLink}
+                </div>` : ''}
             </div>
-            <div class="event-time">${event.time}</div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
+    
+    // Add event listeners for expand buttons
+    document.querySelectorAll('.event-expand-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const eventId = this.getAttribute('data-event-id');
+            const descContainer = document.getElementById(eventId);
+            const icon = this.querySelector('i');
+            
+            if (descContainer.style.display === 'none') {
+                descContainer.style.display = 'block';
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+                this.setAttribute('aria-label', 'Masquer la description');
+            } else {
+                descContainer.style.display = 'none';
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+                this.setAttribute('aria-label', 'Afficher la description');
+            }
+        });
+    });
 }
 
 // Format event date for calendar display
@@ -67,10 +122,28 @@ function initializeFilters() {
 
 // Filter events by type
 function filterEvents(filterType) {
+    // Filter out past events first
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    function parseISODate(dateStr) {
+        const parts = dateStr.split('-').map(Number);
+        if (parts.length >= 3) {
+            return new Date(parts[0], parts[1] - 1, parts[2]);
+        }
+        return new Date(dateStr);
+    }
+    
+    const upcomingEvents = sampleEvents.filter(event => {
+        const eventDate = parseISODate(event.date);
+        eventDate.setHours(0, 0, 0, 0);
+        return eventDate >= today;
+    });
+    
     if (filterType === 'all') {
-        displayEvents(sampleEvents);
+        displayEvents(upcomingEvents);
     } else {
-        const filteredEvents = sampleEvents.filter(event => event.type === filterType);
+        const filteredEvents = upcomingEvents.filter(event => event.type === filterType);
         displayEvents(filteredEvents);
     }
 }

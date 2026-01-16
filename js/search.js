@@ -25,22 +25,37 @@ const siteContent = [
     }
 ];
 
-// Fetch and update agenda content from events.json
+// Fetch and update agenda content from events markdown files
 async function updateAgendaContent() {
     try {
-        const response = await fetch('events.json');
-        if (!response.ok) {
-            throw new Error('Failed to fetch events');
-        }
-        const events = await response.json();
-        
-        // Update the agenda content in siteContent array
-        const agendaIndex = siteContent.findIndex(item => item.url === 'calendar.html');
-        if (agendaIndex !== -1) {
-            const eventTitles = events.map(event => event.title).join(' ');
-            const eventDescriptions = events.map(event => event.description).join(' ');
-            // Reset to base content before appending to avoid accumulation
-            siteContent[agendaIndex].content = siteContent[agendaIndex].baseContent + ' ' + eventTitles + ' ' + eventDescriptions;
+        // Use the fetchEvents function from events.js if available
+        if (typeof fetchEvents === 'function') {
+            await fetchEvents();
+            
+            // Update the agenda content in siteContent array
+            const agendaIndex = siteContent.findIndex(item => item.url === 'calendar.html');
+            if (agendaIndex !== -1 && typeof sampleEvents !== 'undefined') {
+                const eventTitles = sampleEvents.map(event => event.title).join(' ');
+                const eventDescriptions = sampleEvents.map(event => event.description).join(' ');
+                // Reset to base content before appending to avoid accumulation
+                siteContent[agendaIndex].content = siteContent[agendaIndex].baseContent + ' ' + eventTitles + ' ' + eventDescriptions;
+            }
+        } else {
+            // Fallback: try old events.json method
+            const response = await fetch('events.json');
+            if (!response.ok) {
+                throw new Error('Failed to fetch events');
+            }
+            const events = await response.json();
+            
+            // Update the agenda content in siteContent array
+            const agendaIndex = siteContent.findIndex(item => item.url === 'calendar.html');
+            if (agendaIndex !== -1) {
+                const eventTitles = events.map(event => event.title).join(' ');
+                const eventDescriptions = events.map(event => event.description).join(' ');
+                // Reset to base content before appending to avoid accumulation
+                siteContent[agendaIndex].content = siteContent[agendaIndex].baseContent + ' ' + eventTitles + ' ' + eventDescriptions;
+            }
         }
     } catch (error) {
         console.error('Error fetching events for search:', error);

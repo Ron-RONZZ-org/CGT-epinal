@@ -61,7 +61,12 @@ event-{date}-{description}.md
 
 ## Event description
 
-Description détaillée de l'événement...
+Description détaillée de l'événement avec support du formatage Markdown :
+- **Texte en gras**
+- *Texte en italique*
+- Listes numérotées et non-numérotées
+- [Liens](https://example.com)
+- ![Images](url-image.jpg)
 
 ## Date
 
@@ -78,6 +83,15 @@ Adresse complète
 - [] Convialité
 - [] Action syndicale
 ```
+
+### Fonctionnalités des événements
+
+- **Affichage sur la page d'accueil** : Les 3 prochains événements à venir sont affichés
+- **Page agenda complète** : Tous les événements à venir avec filtrage par type
+- **Descriptions extensibles** : Cliquez sur le bouton `+` pour afficher/masquer la description complète
+- **Rendu Markdown** : Les descriptions supportent le formatage Markdown (gras, italique, listes, liens, images)
+- **Lien social** : Si un lien est fourni dans le titre, un bouton "Voir sur les réseaux sociaux" apparaît en bas de la description
+- **Filtrage automatique** : Les événements passés ne sont pas affichés
 
 ### Fichiers de référence
 
