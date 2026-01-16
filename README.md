@@ -52,7 +52,7 @@ Les événements sont stockés sous forme de fichiers Markdown dans le dossier `
 event-{date}-{description}.md
 ```
 
-**Exemple** : `event-16-01-2026-juridique.md`
+**Exemple** : `event-16-01-2026-juridique.md` (format de date : DD-MM-YYYY)
 
 ### Structure d'un fichier événement
 
@@ -84,6 +84,18 @@ Adresse complète
 - **event-template.md** - Modèle vide pour créer un nouvel événement
 - **event-example.md** - Exemple générique avec texte d'exemple
 - **event-example-filled.md** - Exemple complet en français
+
+### Mise à jour de l'index des événements
+
+Après avoir ajouté ou supprimé des fichiers d'événements, exécutez le script suivant pour mettre à jour l'index :
+
+```bash
+./generate-events-index.sh
+```
+
+Ce script génère automatiquement le fichier `events-index.json` qui liste tous les événements disponibles (en excluant les fichiers templates et examples).
+
+**Note** : Le système supporte également l'ancien format `events.json` pour la rétrocompatibilité.
 
 ## 💻 Installation et développement local
 
